@@ -39,8 +39,9 @@ export default function NightlySnapshot({ onSave, onBack }) {
   const [symptoms, setSymptoms] = useState({});
   const [lunchAway, setLunchAway] = useState(null);
   const [workedPastCutoff, setWorkedPastCutoff] = useState(false);
+  
   const [movement, setMovement] = useState(null);
-  const [movementDuration, setMovementDuration] = useState(30); // NEW: Duration State
+  const [movementDuration, setMovementDuration] = useState(30); 
   const [workload, setWorkload] = useState(null);
 
   const toggleMood = (m) => {
@@ -60,7 +61,6 @@ export default function NightlySnapshot({ onSave, onBack }) {
 
   return (
     <div className="flex flex-col h-full" style={{ background: "#E2DEF2" }}>
-      {/* Header */}
       <div className="flex items-center gap-3 px-5 py-4 border-b" style={{ borderColor: "#B8B8FF", background: "white" }}>
         <button onClick={onBack} className="p-2 rounded-full" style={{ background: "#E2DEF2" }}>
           <ChevronLeft size={16} strokeWidth={2} style={{ color: "#6D7BFF" }} />
@@ -73,7 +73,6 @@ export default function NightlySnapshot({ onSave, onBack }) {
 
       <div className="flex-1 overflow-y-auto px-5 py-4 flex flex-col gap-5 pb-8">
 
-        {/* Moods */}
         <section>
           <p className="text-xs font-bold uppercase tracking-wide mb-3" style={{ color: "#4A4868" }}>What did today feel like?</p>
           <div className="flex flex-wrap gap-2">
@@ -97,7 +96,6 @@ export default function NightlySnapshot({ onSave, onBack }) {
           </div>
         </section>
 
-        {/* Stress Slider */}
         <section>
           <div className="flex items-baseline justify-between mb-2">
             <p className="text-xs font-bold uppercase tracking-wide" style={{ color: "#4A4868" }}>Stress Level</p>
@@ -124,7 +122,6 @@ export default function NightlySnapshot({ onSave, onBack }) {
           </div>
         </section>
 
-        {/* Workload */}
         <section>
           <p className="text-xs font-bold uppercase tracking-wide mb-3" style={{ color: "#4A4868" }}>How was your workload?</p>
           <div className="flex gap-2">
@@ -144,7 +141,6 @@ export default function NightlySnapshot({ onSave, onBack }) {
           </div>
         </section>
 
-        {/* Physical Symptoms */}
         <section>
           <p className="text-xs font-bold uppercase tracking-wide mb-3" style={{ color: "#4A4868" }}>Physical Warning Signs</p>
           <div className="grid grid-cols-2 gap-2">
@@ -173,7 +169,6 @@ export default function NightlySnapshot({ onSave, onBack }) {
           </div>
         </section>
 
-        {/* Movement with DURATION */}
         <section>
           <p className="text-xs font-bold uppercase tracking-wide mb-3" style={{ color: "#4A4868" }}>Movement Today</p>
           <div className="flex flex-col gap-2">
@@ -191,7 +186,6 @@ export default function NightlySnapshot({ onSave, onBack }) {
               </button>
             ))}
 
-            {/* NEW: Duration Slider - Only shows if a movement is selected! */}
             {movement && movement !== "none" && (
               <div className="mt-2 p-4 rounded-2xl bg-white border border-[#5CB85C] animate-fade-in shadow-sm">
                 <div className="flex justify-between items-center mb-2">
@@ -213,14 +207,10 @@ export default function NightlySnapshot({ onSave, onBack }) {
           </div>
         </section>
 
-        {/* Behavior Toggles */}
         <section>
           <p className="text-xs font-bold uppercase tracking-wide mb-3" style={{ color: "#4A4868" }}>Behavior</p>
           <div className="flex flex-col gap-2">
-            <div
-              className="flex items-center justify-between p-4 rounded-2xl"
-              style={{ background: "white", border: "1.5px solid #B8B8FF" }}
-            >
+            <div className="flex items-center justify-between p-4 rounded-2xl" style={{ background: "white", border: "1.5px solid #B8B8FF" }}>
               <p className="text-[12px] font-semibold" style={{ color: "#4A4868" }}>Worked past cut-off?</p>
               <button
                 onClick={() => setWorkedPastCutoff(!workedPastCutoff)}
@@ -236,7 +226,25 @@ export default function NightlySnapshot({ onSave, onBack }) {
           </div>
         </section>
 
-        {/* Optional Journal */}
+        <section>
+          <p className="text-xs font-bold uppercase tracking-wide mb-3" style={{ color: "#4A4868" }}>Lunch Today</p>
+          <div className="flex flex-col gap-2">
+            {LUNCH_OPTIONS.map(({ id, label }) => (
+              <button
+                key={id}
+                onClick={() => setLunchAway(id)}
+                className="flex items-center gap-3 p-3.5 rounded-2xl text-left transition-all"
+                style={lunchAway === id
+                  ? { background: id === "away" ? "#E8F5E8" : id === "desk" ? "#FFF8E0" : "#FFEDED", border: `1.5px solid ${id === "away" ? "#5CB85C" : id === "desk" ? "#F5A623" : "#E8343A"}` }
+                  : { background: "white", border: "1.5px solid #B8B8FF" }
+                }
+              >
+                <p className="text-[12px] font-semibold" style={{ color: "#4A4868" }}>{label}</p>
+              </button>
+            ))}
+          </div>
+        </section>
+
         <section>
           <p className="text-xs font-bold uppercase tracking-wide mb-3" style={{ color: "#4A4868" }}>Mind Dump (Optional)</p>
           <textarea 
@@ -246,7 +254,6 @@ export default function NightlySnapshot({ onSave, onBack }) {
           />
         </section>
 
-        {/* Save */}
         <button
           onClick={handleSave}
           className="w-full py-4 rounded-3xl font-bold text-base text-white transition-all active:scale-98"
@@ -254,4 +261,9 @@ export default function NightlySnapshot({ onSave, onBack }) {
         >
           Save Today ✓
         </button>
+
+      </div>
+    </div>
+  );
 }
+// END OF FILE
