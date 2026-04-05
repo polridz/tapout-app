@@ -13,10 +13,7 @@ import BottomNav from "../components/tapout/BottomNav";
 
 export default function TapOut() {
   const [screen, setScreen] = useState("onboarding");
-  
-  // NEW STATE FOR THE NAME
   const [userName, setUserName] = useState(""); 
-  
   const [dhyanaMode, setDhyanaMode] = useState("morning");
   const [todayStress, setTodayStress] = useState(null);
   const [todayNosebleed, setTodayNosebleed] = useState(false);
@@ -35,19 +32,17 @@ export default function TapOut() {
     switch (screen) {
       case "onboarding": 
         return <Onboarding onComplete={(data) => {
-          // When onboarding finishes, save the name they typed!
-          if (data?.name) {
-            setUserName(data.name);
-          }
+          if (data?.name) setUserName(data.name);
           navigate("home");
         }} />;
       case "home":
         return (
           <HomeDashboard
-            userName={userName} // Pass the saved name to the dashboard
+            userName={userName}
             onTapOut={() => navigate("sos")}
             onRedZone={() => navigate("redzone")}
             onDhyana={(mode) => { setDhyanaMode(mode); navigate("dhyana"); }}
+            onLogDay={() => navigate("snapshot")} // <--- NEW ROUTING PROP ADDED
             onSummary={() => navigate("summary")}
             todayStress={todayStress}
             todayNosebleed={todayNosebleed}
@@ -95,20 +90,27 @@ export default function TapOut() {
         </div>
       </MobileShell>
 
-      {/* Development Navigation Buttons */}
+      {/* FIXED NAVIGATION BUTTONS (Stays purple when active) */}
       <div className="flex gap-2 flex-wrap justify-center max-w-sm mt-6">
-        {navScreens.map((s) => (
-          <button
-            key={s.id}
-            onClick={() => {
-              if (s.id === "dhyana") setDhyanaMode("morning");
-              navigate(s.id);
-            }}
-            className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-[#B8B8FF] text-[#4A4868] hover:bg-[#6D7BFF] hover:text-white transition-all"
-          >
-            {s.label}
-          </button>
-        ))}
+        {navScreens.map((s) => {
+          const isActive = screen === s.id;
+          return (
+            <button
+              key={s.id}
+              onClick={() => {
+                if (s.id === "dhyana") setDhyanaMode("morning");
+                navigate(s.id);
+              }}
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
+                isActive 
+                  ? "bg-[#6D7BFF] text-white border-[#6D7BFF] shadow-md" 
+                  : "bg-white border-[#B8B8FF] text-[#4A4868] hover:bg-[#E2DEF2]"
+              }`}
+            >
+              {s.label}
+            </button>
+          )
+        })}
       </div>
     </div>
   );
