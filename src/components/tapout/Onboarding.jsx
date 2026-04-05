@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Check, Plus, Calendar, Lock } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Calendar, Lock } from "lucide-react";
 
 const SYMPTOMS = [
   { id: "headache", label: "Headaches", emoji: "🤕" },
@@ -17,6 +17,7 @@ const SYMPTOMS = [
 export default function Onboarding({ onComplete }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
+    name: "", // <--- NEW NAME FIELD
     age: "25–29", industry: "Marketing/Advertising", pattern: "Regional / multiple time zones",
     symptoms: ["headache", "neck", "sunday", "freeze"], customSymptom: "",
     sos: ["Breathing / relaxation", "Moving / stretching"], audio: "Sometimes",
@@ -47,7 +48,7 @@ export default function Onboarding({ onComplete }) {
 
   const nextStep = () => {
     if (step < 4) setStep(step + 1);
-    else onComplete();
+    else onComplete(formData); // <--- PASSING THE DATA UP
   };
 
   return (
@@ -59,23 +60,34 @@ export default function Onboarding({ onComplete }) {
             <ChevronLeft size={18} color="#6D7BFF" />
           </button>
           <span className="text-xs font-bold text-[#B7C4D8]">STEP {step} OF 4</span>
-          <div className="w-9" /> {/* Spacer */}
+          <div className="w-9" />
         </div>
         <div className="w-full h-1.5 bg-[#E2DEF2] rounded-full overflow-hidden">
           <div className="h-full bg-[#6D7BFF] transition-all duration-500" style={{ width: `${(step / 4) * 100}%` }} />
         </div>
       </div>
 
-      {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-6">
         
         {/* STEP 1: Work Context */}
         {step === 1 && (
           <div className="animate-fade-in flex flex-col gap-6">
             <div>
-              <h2 className="text-2xl font-bold text-[#003B64] mb-2">Tell us about your work</h2>
-              <p className="text-sm text-[#4A4868]">This helps TapOut understand your daily rhythm.</p>
+              <h2 className="text-2xl font-bold text-[#003B64] mb-2">Tell us about you</h2>
+              <p className="text-sm text-[#4A4868]">This helps TapOut personalize your experience.</p>
             </div>
+
+            {/* NEW NAME INPUT */}
+            <section>
+              <p className="text-xs font-bold uppercase text-[#B7C4D8] mb-3">Your Name</p>
+              <input 
+                type="text" 
+                placeholder="What should we call you?" 
+                value={formData.name}
+                onChange={(e) => update("name", e.target.value)}
+                className="w-full px-4 py-3 rounded-2xl border border-[#B8B8FF] bg-white text-sm outline-none focus:border-[#6D7BFF] transition-colors"
+              />
+            </section>
 
             <section>
               <p className="text-xs font-bold uppercase text-[#B7C4D8] mb-3">Industry</p>
@@ -121,7 +133,6 @@ export default function Onboarding({ onComplete }) {
               })}
             </div>
             
-            {/* Custom Symptom */}
             <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-white border border-[#B8B8FF]">
               <input type="text" placeholder="Add custom (e.g. stomach ache)" className="flex-1 bg-transparent px-3 text-sm outline-none text-[#4A4868]" value={formData.customSymptom} onChange={e => update("customSymptom", e.target.value)} />
               <button className="w-8 h-8 rounded-xl bg-[#E2DEF2] flex items-center justify-center"><Plus size={16} color="#6D7BFF" /></button>
@@ -228,7 +239,7 @@ export default function Onboarding({ onComplete }) {
           {step < 4 && <ChevronRight size={18} />}
         </button>
         {step === 4 && (
-          <button onClick={onComplete} className="w-full text-center text-xs font-semibold text-[#B7C4D8] mt-4">
+          <button onClick={() => onComplete({ name: formData.name })} className="w-full text-center text-xs font-semibold text-[#B7C4D8] mt-4">
             Skip for now
           </button>
         )}
