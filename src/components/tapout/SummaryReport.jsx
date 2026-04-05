@@ -22,10 +22,10 @@ const DAYS = ["M", "T", "W", "T", "F", "S", "S"];
 const WEEKS = ["Wk 1", "Wk 2", "Wk 3", "Wk 4"];
 
 const weeklyData = [
-  { week: "Week 1", avg: 4.0, tapOuts: 2, lunches: 3, label: "Stable" },
-  { week: "Week 2", avg: 6.0, tapOuts: 5, lunches: 2, label: "Elevated" },
-  { week: "Week 3", avg: 3.4, tapOuts: 1, lunches: 4, label: "Recovery" },
-  { week: "Week 4", avg: 5.25, tapOuts: 3, lunches: 3, label: "Mixed" },
+  { week: "Wk 1", avg: 4.0, tapOuts: 2, lunches: 3, label: "Stable" },
+  { week: "Wk 2", avg: 6.0, tapOuts: 5, lunches: 2, label: "Elevated" },
+  { week: "Wk 3", avg: 3.4, tapOuts: 1, lunches: 4, label: "Recovery" },
+  { week: "Wk 4", avg: 5.25, tapOuts: 3, lunches: 3, label: "Mixed" },
 ];
 
 const getWeekColor = (avg) => {
@@ -38,7 +38,9 @@ export default function SummaryReport({ onBack }) {
   return (
     <div className="flex flex-col h-full bg-[#E2DEF2]">
       <div className="flex items-center gap-3 px-5 py-4 bg-white border-b border-[#B8B8FF]">
-        <button onClick={onBack} className="p-2 rounded-full bg-[#E2DEF2]"><ChevronLeft size={16} color="#6D7BFF" /></button>
+        <button onClick={onBack} className="p-2 rounded-full bg-[#E2DEF2]">
+          <ChevronLeft size={16} color="#6D7BFF" />
+        </button>
         <div className="flex-1">
           <h2 className="text-base font-bold text-[#003B64]">Monthly Report</h2>
           <p className="text-[10px] text-[#B7C4D8]">April 2026</p>
@@ -47,7 +49,6 @@ export default function SummaryReport({ onBack }) {
 
       <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-4 pb-8">
         
-        {/* Heatmap */}
         <div className="rounded-3xl p-4 bg-white shadow-sm">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-1 h-4 rounded-full bg-[#6D7BFF]" />
@@ -73,7 +74,6 @@ export default function SummaryReport({ onBack }) {
           </div>
         </div>
 
-        {/* Top Stats */}
         <div className="grid grid-cols-3 gap-2">
           {[{ label: "Avg Stress", value: "4.7", sub: "/ 10", icon: <Zap size={14} />, color: "#F5A623" },
             { label: "Tap Outs", value: "11", sub: "sessions", icon: <TrendingDown size={14} />, color: "#6D7BFF" },
@@ -87,7 +87,6 @@ export default function SummaryReport({ onBack }) {
           ))}
         </div>
 
-        {/* Weekly Breakdown */}
         <div className="rounded-3xl p-4 bg-white shadow-sm">
           <p className="text-xs font-bold uppercase text-[#4A4868] mb-3">Weekly Breakdown</p>
           <div className="flex flex-col gap-2.5">
@@ -103,7 +102,6 @@ export default function SummaryReport({ onBack }) {
           </div>
         </div>
 
-        {/* Behaviours */}
         <div className="rounded-3xl p-4 bg-white shadow-sm">
           <p className="text-xs font-bold uppercase text-[#4A4868] mb-3">Behaviour Patterns</p>
           <div className="flex flex-col gap-2">
@@ -120,7 +118,6 @@ export default function SummaryReport({ onBack }) {
           </div>
         </div>
 
-        {/* Pattern Spotting (Journal) */}
         <div className="rounded-3xl p-4 bg-white border-2 border-[#E2DEF2]">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-1 h-4 rounded-full bg-[#9B59B6]" />
@@ -131,7 +128,6 @@ export default function SummaryReport({ onBack }) {
           </div>
         </div>
 
-        {/* AI Insight */}
         <div className="rounded-3xl p-4 bg-gradient-to-br from-[#003B64] to-[#4A4868] shadow-lg">
           <p className="text-[10px] font-bold uppercase text-white/50 mb-2">Monthly Insight</p>
           <p className="text-[13px] text-white leading-relaxed">
@@ -143,3 +139,4 @@ export default function SummaryReport({ onBack }) {
     </div>
   );
 }
+// END OF FILE
