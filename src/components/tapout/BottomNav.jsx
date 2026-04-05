@@ -1,8 +1,9 @@
-import { Home, BookOpen, Users } from "lucide-react";
+import { Home, BookOpen, PenLine, Users } from "lucide-react";
 
 const tabs = [
   { id: "home", label: "Home", Icon: Home },
   { id: "snapshot", label: "Log", Icon: BookOpen },
+  { id: "journal", label: "Journal", Icon: PenLine },
   { id: "circle", label: "Circle", Icon: Users },
 ];
 
@@ -32,6 +33,7 @@ export default function BottomNav({ active, onNavigate }) {
           </span>
         </button>
       ))}
+      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-28 h-1 bg-gray-300 rounded-full opacity-40" />
     </div>
   );
 }
