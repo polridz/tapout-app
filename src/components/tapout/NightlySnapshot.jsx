@@ -236,6 +236,16 @@ export default function NightlySnapshot({ onSave, onBack }) {
           </div>
         </section>
 
+        {/* Optional Journal */}
+        <section>
+          <p className="text-xs font-bold uppercase tracking-wide mb-3" style={{ color: "#4A4868" }}>Mind Dump (Optional)</p>
+          <textarea 
+            placeholder="Anything else on your mind?"
+            className="w-full p-4 rounded-2xl bg-white border border-[#B8B8FF] resize-none outline-none focus:border-[#6D7BFF] text-sm text-[#4A4868]"
+            style={{ height: "100px" }}
+          />
+        </section>
+
         {/* Save */}
         <button
           onClick={handleSave}
@@ -244,8 +254,4 @@ export default function NightlySnapshot({ onSave, onBack }) {
         >
           Save Today ✓
         </button>
-
-      </div>
-    </div>
-  );
 }
