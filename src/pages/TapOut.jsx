@@ -9,6 +9,7 @@ import RedZone from "../components/tapout/RedZone";
 import DhyanaRoutine from "../components/tapout/DhyanaRoutine";
 import SummaryReport from "../components/tapout/SummaryReport";
 import WidgetPreview from "../components/tapout/WidgetPreview";
+import Journal from "../components/tapout/Journal";
 import BottomNav from "../components/tapout/BottomNav";
 
 export default function TapOut() {
@@ -42,8 +43,9 @@ export default function TapOut() {
             onTapOut={() => navigate("sos")}
             onRedZone={() => navigate("redzone")}
             onDhyana={(mode) => { setDhyanaMode(mode); navigate("dhyana"); }}
-            onLogDay={() => navigate("snapshot")} // <--- NEW ROUTING PROP ADDED
+            onLogDay={() => navigate("snapshot")} 
             onSummary={() => navigate("summary")}
+            onJournal={() => navigate("journal")}
             todayStress={todayStress}
             todayNosebleed={todayNosebleed}
             snapshotSaved={snapshotSaved}
@@ -56,17 +58,20 @@ export default function TapOut() {
       case "dhyana": return <DhyanaRoutine mode={dhyanaMode} onDone={() => navigate("home")} onBack={() => navigate("home")} />;
       case "summary": return <SummaryReport onBack={() => navigate("home")} />;
       case "widget": return <WidgetPreview onBack={() => navigate("home")} />;
+      case "journal": return <Journal onBack={() => navigate("home")} />;
       default: return null;
     }
   };
 
-  const showNav = ["home", "snapshot", "circle"].includes(screen);
+  // Ensure the bottom navigation shows up on the Journal page as well
+  const showNav = ["home", "snapshot", "journal", "circle"].includes(screen);
 
   const navScreens = [
     { id: "onboarding", label: "Start Onboarding" },
     { id: "home", label: "Home" },
     { id: "sos", label: "SOS Reset" },
     { id: "snapshot", label: "Log Day" },
+    { id: "journal", label: "Journal" },
     { id: "circle", label: "Care Circle" },
     { id: "redzone", label: "Red Zone" },
     { id: "dhyana", label: "Dhyana" },
@@ -91,7 +96,7 @@ export default function TapOut() {
       </MobileShell>
 
       {/* FIXED NAVIGATION BUTTONS (Stays purple when active) */}
-      <div className="flex gap-2 flex-wrap justify-center max-w-sm mt-6">
+      <div className="flex gap-2 flex-wrap justify-center max-w-lg mt-6">
         {navScreens.map((s) => {
           const isActive = screen === s.id;
           return (
