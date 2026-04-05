@@ -120,14 +120,21 @@ export default function SummaryReport({ onBack }) {
           </div>
         </div>
 
-        {/* Insight */}
+      {/* Pattern Spotting (Journal) */}
+        <div className="rounded-3xl p-4 bg-white border-2 border-[#E2DEF2]">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-1 h-4 rounded-full bg-[#9B59B6]" />
+            <p className="text-xs font-bold uppercase text-[#4A4868]">Journal Patterns</p>
+          </div>
+          <div className="p-3 rounded-2xl bg-[#F5F4FB] text-[12px] text-[#4A4868] leading-relaxed">
+            <p>During <span className="font-bold text-[#E8343A]">Red weeks</span>, your journal entries frequently mention <strong>"no time to eat"</strong> and <strong>"Client X revisions"</strong>. Skipped lunches are a strong predictor of burnout spikes for you.</p>
+          </div>
+        </div>
+
+        {/* AI Insight */}
         <div className="rounded-3xl p-4 bg-gradient-to-br from-[#003B64] to-[#4A4868] shadow-lg">
           <p className="text-[10px] font-bold uppercase text-white/50 mb-2">Monthly Insight</p>
           <p className="text-[13px] text-white leading-relaxed">
             Your stress spikes on <span className="font-bold text-[#B8B8FF]">Wednesdays</span>. Weeks with <span className="font-bold text-[#5CB85C]">3+ proper lunches</span> show a 22% lower average stress score. Small breaks are working. 🌿
           </p>
         </div>
-      </div>
-    </div>
-  );
-}
