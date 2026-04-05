@@ -1,3 +1,9 @@
+import { useState } from "react";
+import { ChevronLeft, MessageCircle, Plus, MapPin } from "lucide-react";
+
+const circleMembers = [
+  {
+    name: "Polina",
     initials: "PO",
     weekColor: "#F5A623",
     weekLabel: "Mostly Amber",
