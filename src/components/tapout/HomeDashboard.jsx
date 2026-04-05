@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Settings, Sun, Moon, TrendingDown, Zap, ChevronRight, AlertTriangle, BarChart2 } from "lucide-react";
 import BurnoutBar from "./BurnoutBar";
 
-export default function HomeDashboard({ userName, onTapOut, onRedZone, onDhyana, onLogDay, onSummary, todayStress, todayNosebleed, snapshotSaved }) {
+export default function HomeDashboard({ userName, onTapOut, onRedZone, onDhyana, onLogDay, onSummary, onJournal, todayStress, todayNosebleed, snapshotSaved }) {
   const [dhyanaMode, setDhyanaMode] = useState("moon");
 
   const hour = new Date().getHours();
@@ -20,6 +20,7 @@ export default function HomeDashboard({ userName, onTapOut, onRedZone, onDhyana,
   return (
     <div className="flex flex-col h-full px-5 pt-2 pb-4 gap-3" style={{ background: "#E2DEF2" }}>
 
+      {/* Header */}
       <div className="flex items-center justify-between pt-1">
         <div>
           <p className="text-[11px] font-medium tracking-wide" style={{ color: "#B7C4D8" }}>{greeting},</p>
@@ -40,6 +41,7 @@ export default function HomeDashboard({ userName, onTapOut, onRedZone, onDhyana,
         </div>
       </div>
 
+      {/* Red Zone Alert Banner */}
       {hasRedZone && (
         <button onClick={onRedZone} className="flex items-center gap-3 p-3 rounded-2xl animate-fade-in" style={{ background: "#FFEDED", border: "1px solid #FF6B6B" }}>
           <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#E8343A" }}><AlertTriangle size={14} strokeWidth={2} className="text-white" /></div>
@@ -48,6 +50,7 @@ export default function HomeDashboard({ userName, onTapOut, onRedZone, onDhyana,
         </button>
       )}
 
+      {/* Main Tap Out Button */}
       <div className="flex flex-col items-center gap-2 py-1">
         <p className="text-[11px] font-medium tracking-wide" style={{ color: "#4A4868" }}>Feeling overwhelmed?</p>
         <button onClick={onTapOut} className="relative w-40 h-40 rounded-full flex flex-col items-center justify-center transition-all active:scale-95" style={{ background: "linear-gradient(145deg, #7D8BFF, #5560EE)", boxShadow: "0 8px 32px rgba(109,123,255,0.5), 0 0 0 8px rgba(109,123,255,0.15), 0 0 0 16px rgba(109,123,255,0.07)" }}>
@@ -58,18 +61,37 @@ export default function HomeDashboard({ userName, onTapOut, onRedZone, onDhyana,
         </button>
       </div>
 
+      {/* Burnout Bar */}
       <BurnoutBar weekData={weekData} />
 
+      {/* Quick Insights */}
       <div className="rounded-3xl p-4 flex flex-col gap-2" style={{ background: "white", boxShadow: "0 2px 16px rgba(0,0,0,0.06)" }}>
         <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-2"><div className="w-1 h-4 rounded-full" style={{ background: "#6D7BFF" }} /><p className="text-xs font-bold tracking-wide uppercase" style={{ color: "#4A4868" }}>Weekly Insight</p></div>
           <button onClick={onSummary} className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold" style={{ background: "#E2DEF2", color: "#6D7BFF" }}><BarChart2 size={10} />Full Report</button>
         </div>
-        <div className="flex items-start gap-2"><div className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#E2DEF2" }}><TrendingDown size={10} strokeWidth={1.5} style={{ color: "#6D7BFF" }} /></div><p className="text-[12px] leading-relaxed" style={{ color: "#4A4868" }}>You've taken <span className="font-semibold" style={{ color: "#003B64" }}>3 proper lunches</span> this week. Stress is <span className="font-semibold" style={{ color: "#5CB85C" }}>20% lower</span> than last week 🌿</p></div>
-        <div className="flex items-start gap-2"><div className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#FFEDED" }}><AlertTriangle size={10} strokeWidth={1.5} style={{ color: "#E8343A" }} /></div><p className="text-[12px] leading-relaxed" style={{ color: "#4A4868" }}>High-stress days clustered on <span className="font-semibold" style={{ color: "#003B64" }}>Wednesdays</span>. Often follows late client calls.</p></div>
+        <div className="flex items-start gap-2"><div className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#E2DEF2" }}><TrendingDown size={10} strokeWidth={1.5} style={{ color: "#6D7BFF" }} /></div><p className="text-[12px] leading-relaxed" style={{ color: "#4A4868" }}>You've taken <span className="font-bold text-[#003B64]">3 proper lunches</span> this week. Stress is <span className="font-bold text-[#5CB85C]">20% lower</span> than last week 🌿</p></div>
+        <div className="flex items-start gap-2"><div className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#FFEDED" }}><AlertTriangle size={10} strokeWidth={1.5} style={{ color: "#E8343A" }} /></div><p className="text-[12px] leading-relaxed" style={{ color: "#4A4868" }}>High-stress days clustered on <span className="font-bold text-[#003B64]">Wednesdays</span>. Often follows late client calls.</p></div>
       </div>
 
-      {/* CORRECTED LOG DAY BUTTON MATCHING SCREENSHOT */}
+      {/* Quick Journal Button */}
+      <button 
+        onClick={onJournal}
+        className="rounded-[2rem] p-4 flex items-center justify-between bg-white border border-[#B8B8FF] shadow-sm hover:bg-[#F5F4FB] transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-[#E2DEF2] flex items-center justify-center">
+            <span className="text-lg">✍️</span>
+          </div>
+          <div className="text-left">
+            <p className="text-sm font-bold text-[#003B64]">Quick Journal</p>
+            <p className="text-[10px] text-[#4A4868]">Get it off your chest.</p>
+          </div>
+        </div>
+        <ChevronRight size={16} color="#B7C4D8" />
+      </button>
+
+      {/* Log Day Prompt */}
       {!snapshotSaved && (
         <button
           onClick={onLogDay}
