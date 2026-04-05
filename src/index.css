@@ -5,8 +5,19 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 40 33% 98%;
+    --foreground: 25 15% 18%;
+    --border: 40 15% 89%;
+    --radius: 1.25rem;
+  }
+  
+  * { 
+    @apply border-border; 
+  }
+  
   body { 
-    @apply bg-[#FDFBF7] text-gray-900; 
+    @apply bg-[#FDFBF7] text-foreground; 
     font-family: 'Inter', sans-serif; 
   }
 }
