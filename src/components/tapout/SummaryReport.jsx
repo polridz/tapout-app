@@ -25,7 +25,7 @@ const weeklyData = [
   { week: "Week 1", avg: 4.0, tapOuts: 2, lunches: 3, label: "Stable" },
   { week: "Week 2", avg: 6.0, tapOuts: 5, lunches: 2, label: "Elevated" },
   { week: "Week 3", avg: 3.4, tapOuts: 1, lunches: 4, label: "Recovery" },
-  { week: "Week 4", avg: 5.25, tapOuts: 3, lunches: 3, label: "Mixed" },
+  { week: "Week4", avg: 5.25, tapOuts: 3, lunches: 3, label: "Mixed" },
 ];
 
 const getWeekColor = (avg) => {
