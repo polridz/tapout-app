@@ -43,7 +43,7 @@ const circleMembers = [
     glimpseCaption: "Beach lunch break 🌊",
   },
   {
-    name: "Lucas",
+    name: "Lucus",
     initials: "LU",
     weekColor: "#F5A623",
     weekLabel: "Mixed Week",
