@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MobileShell from "../components/tapout/MobileShell";
+import Onboarding from "../components/tapout/Onboarding";
 import HomeDashboard from "../components/tapout/HomeDashboard";
 import SOSReset from "../components/tapout/SOSReset";
 import NightlySnapshot from "../components/tapout/NightlySnapshot";
@@ -11,7 +12,8 @@ import WidgetPreview from "../components/tapout/WidgetPreview";
 import BottomNav from "../components/tapout/BottomNav";
 
 export default function TapOut() {
-  const [screen, setScreen] = useState("home");
+  // Set default screen to "onboarding" so it shows first!
+  const [screen, setScreen] = useState("onboarding");
   const [dhyanaMode, setDhyanaMode] = useState("morning");
   const [todayStress, setTodayStress] = useState(null);
   const [todayNosebleed, setTodayNosebleed] = useState(false);
@@ -28,6 +30,7 @@ export default function TapOut() {
 
   const renderScreen = () => {
     switch (screen) {
+      case "onboarding": return <Onboarding onComplete={() => navigate("home")} />;
       case "home":
         return (
           <HomeDashboard
@@ -54,6 +57,7 @@ export default function TapOut() {
   const showNav = ["home", "snapshot", "circle"].includes(screen);
 
   const navScreens = [
+    { id: "onboarding", label: "Start Onboarding" },
     { id: "home", label: "Home" },
     { id: "sos", label: "SOS Reset" },
     { id: "snapshot", label: "Log Day" },
@@ -80,7 +84,7 @@ export default function TapOut() {
         </div>
       </MobileShell>
 
-      {/* Development Navigation Buttons (Below the phone) */}
+      {/* Development Navigation Buttons */}
       <div className="flex gap-2 flex-wrap justify-center max-w-sm mt-6">
         {navScreens.map((s) => (
           <button
