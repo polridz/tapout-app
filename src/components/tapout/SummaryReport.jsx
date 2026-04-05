@@ -25,7 +25,7 @@ const weeklyData = [
   { week: "Week 1", avg: 4.0, tapOuts: 2, lunches: 3, label: "Stable" },
   { week: "Week 2", avg: 6.0, tapOuts: 5, lunches: 2, label: "Elevated" },
   { week: "Week 3", avg: 3.4, tapOuts: 1, lunches: 4, label: "Recovery" },
-  { week: "Week4", avg: 5.25, tapOuts: 3, lunches: 3, label: "Mixed" },
+  { week: "Week 4", avg: 5.25, tapOuts: 3, lunches: 3, label: "Mixed" },
 ];
 
 const getWeekColor = (avg) => {
@@ -120,7 +120,7 @@ export default function SummaryReport({ onBack }) {
           </div>
         </div>
 
-      {/* Pattern Spotting (Journal) */}
+        {/* Pattern Spotting (Journal) */}
         <div className="rounded-3xl p-4 bg-white border-2 border-[#E2DEF2]">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-1 h-4 rounded-full bg-[#9B59B6]" />
@@ -138,3 +138,8 @@ export default function SummaryReport({ onBack }) {
             Your stress spikes on <span className="font-bold text-[#B8B8FF]">Wednesdays</span>. Weeks with <span className="font-bold text-[#5CB85C]">3+ proper lunches</span> show a 22% lower average stress score. Small breaks are working. 🌿
           </p>
         </div>
+
+      </div>
+    </div>
+  );
+}
