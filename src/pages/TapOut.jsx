@@ -12,8 +12,11 @@ import WidgetPreview from "../components/tapout/WidgetPreview";
 import BottomNav from "../components/tapout/BottomNav";
 
 export default function TapOut() {
-  // Set default screen to "onboarding" so it shows first!
   const [screen, setScreen] = useState("onboarding");
+  
+  // NEW STATE FOR THE NAME
+  const [userName, setUserName] = useState(""); 
+  
   const [dhyanaMode, setDhyanaMode] = useState("morning");
   const [todayStress, setTodayStress] = useState(null);
   const [todayNosebleed, setTodayNosebleed] = useState(false);
@@ -30,10 +33,18 @@ export default function TapOut() {
 
   const renderScreen = () => {
     switch (screen) {
-      case "onboarding": return <Onboarding onComplete={() => navigate("home")} />;
+      case "onboarding": 
+        return <Onboarding onComplete={(data) => {
+          // When onboarding finishes, save the name they typed!
+          if (data?.name) {
+            setUserName(data.name);
+          }
+          navigate("home");
+        }} />;
       case "home":
         return (
           <HomeDashboard
+            userName={userName} // Pass the saved name to the dashboard
             onTapOut={() => navigate("sos")}
             onRedZone={() => navigate("redzone")}
             onDhyana={(mode) => { setDhyanaMode(mode); navigate("dhyana"); }}
