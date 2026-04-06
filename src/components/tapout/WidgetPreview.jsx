@@ -1,6 +1,6 @@
-import { ChevronLeft, Wifi, Signal, Battery, Search, Phone, Safari, MessageSquare, Music } from "lucide-react";
+import { ChevronLeft, Wifi, Signal, Battery, Search, Phone, MessageSquare, Music } from "lucide-react";
 
-export default function WidgetPreview({ onBack }) {
+export default function WidgetPreview({ onBack, onTapOut, onLogDay }) {
   return (
     <div className="flex flex-col h-full bg-black">
       {/* Dynamic Island / Status Bar */}
@@ -59,13 +59,21 @@ export default function WidgetPreview({ onBack }) {
               <div className="h-full rounded-full" style={{ width: "60%", background: "linear-gradient(90deg, #5CB85C, #F5A623)" }} />
             </div>
           </div>
+          
+          {/* NOW CLICKABLE BUTTONS */}
           <div className="flex gap-2.5 mt-auto">
-            <div className="flex-1 py-2.5 rounded-xl flex items-center justify-center gap-1.5 bg-[#6D7BFF] shadow-lg">
+            <button 
+              onClick={onTapOut}
+              className="flex-1 py-2.5 rounded-xl flex items-center justify-center gap-1.5 bg-[#6D7BFF] shadow-lg transition-transform active:scale-95"
+            >
               <span className="text-white text-sm">⚡</span><span className="text-white text-[11px] font-bold">Tap Out</span>
-            </div>
-            <div className="flex-1 py-2.5 rounded-xl flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm">
+            </button>
+            <button 
+              onClick={onLogDay}
+              className="flex-1 py-2.5 rounded-xl flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm transition-transform active:scale-95"
+            >
               <span className="text-white text-sm">🌙</span><span className="text-white text-[11px] font-medium">Log day</span>
-            </div>
+            </button>
           </div>
         </div>
 
@@ -133,17 +141,20 @@ export default function WidgetPreview({ onBack }) {
             </div>
             <span className="text-white text-[11px] font-medium drop-shadow-md">Reminders</span>
           </div>
-          <div className="flex flex-col items-center gap-1.5">
-            <div className="w-[60px] h-[60px] rounded-[14px] bg-white flex items-center justify-center shadow-sm relative">
-              <div className="w-12 h-12 rounded-full border border-gray-200 relative flex items-center justify-center">
-                <div className="absolute w-0.5 h-4 bg-black top-1 rounded-full origin-bottom rotate-45" />
-                <div className="absolute w-0.5 h-3 bg-black left-6 rounded-full origin-left -rotate-[20deg]" />
-                <div className="absolute w-[1px] h-5 bg-orange-500 bottom-5 rounded-full origin-bottom rotate-[160deg]" />
-                <div className="w-1 h-1 rounded-full bg-black z-10" />
-              </div>
+          
+          {/* TAP OUT SMALL WIDGET (also clickable!) */}
+          <button 
+            onClick={onTapOut}
+            className="flex flex-col items-center gap-1.5 transition-transform active:scale-95"
+          >
+            <div
+              className="w-[60px] h-[60px] rounded-[14px] flex items-center justify-center shadow-lg"
+              style={{ background: "linear-gradient(145deg, #003B64, #4A4868)", boxShadow: "0 4px 16px rgba(109,123,255,0.4)" }}
+            >
+              <span className="text-2xl">⚡</span>
             </div>
-            <span className="text-white text-[11px] font-medium drop-shadow-md">Clock</span>
-          </div>
+            <span className="text-white text-[11px] text-center opacity-80">TapOut</span>
+          </button>
         </div>
 
       </div>
