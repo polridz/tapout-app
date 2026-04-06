@@ -1,25 +1,8 @@
-import { ChevronLeft, Wifi, Signal, Battery, Search, Phone, MessageSquare, Music } from "lucide-react";
+import { ChevronLeft, Search, Phone, MessageSquare, Music } from "lucide-react";
 
 export default function WidgetPreview({ onBack, onTapOut, onLogDay }) {
   return (
-    <div className="flex flex-col h-full bg-black">
-      {/* Dynamic Island / Status Bar */}
-      <div className="flex items-center justify-between px-6 pt-3 pb-1 z-50">
-        <span className="text-white text-[13px] font-semibold tracking-wide">9:41</span>
-        <div className="w-24 h-7 bg-black rounded-full absolute left-1/2 -translate-x-1/2 shadow-inner" />
-        <div className="flex items-center gap-1.5 opacity-90">
-          <Signal size={14} className="text-white fill-white" />
-          <Wifi size={14} className="text-white" />
-          <Battery size={15} className="text-white" />
-        </div>
-      </div>
-
-      <div className="flex items-center gap-2 px-4 py-2 z-50 relative">
-        <button onClick={onBack} className="p-1.5 rounded-full bg-black/40 backdrop-blur-md">
-          <ChevronLeft size={16} strokeWidth={2} className="text-white" />
-        </button>
-        <p className="text-white/80 text-[11px] font-medium backdrop-blur-sm px-2 py-1 rounded-md bg-black/20">Return to App</p>
-      </div>
+    <div className="flex flex-col h-full bg-black relative">
 
       {/* Realistic iOS Wallpaper Background */}
       <div className="absolute inset-0 z-0 opacity-90" style={{
@@ -28,6 +11,14 @@ export default function WidgetPreview({ onBack, onTapOut, onLogDay }) {
         {/* Organic overlay shapes */}
         <div className="absolute top-[-10%] right-[-20%] w-[120%] h-[60%] rounded-full bg-[#dcf2f5] mix-blend-overlay opacity-60 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[80%] h-[70%] rounded-full bg-[#91c6f5] mix-blend-overlay opacity-50 blur-3xl" />
+      </div>
+
+      {/* Header with back button */}
+      <div className="flex items-center gap-2 px-4 py-3 z-50 relative mt-2">
+        <button onClick={onBack} className="p-1.5 rounded-full bg-white/20 backdrop-blur-md">
+          <ChevronLeft size={16} strokeWidth={2} className="text-white" />
+        </button>
+        <p className="text-white/90 text-[11px] font-medium backdrop-blur-sm px-2 py-1 rounded-md bg-white/10">Return to App</p>
       </div>
 
       {/* iPhone Home Screen Content */}
@@ -60,7 +51,6 @@ export default function WidgetPreview({ onBack, onTapOut, onLogDay }) {
             </div>
           </div>
           
-          {/* NOW CLICKABLE BUTTONS */}
           <div className="flex gap-2.5 mt-auto">
             <button 
               onClick={onTapOut}
@@ -195,3 +185,4 @@ export default function WidgetPreview({ onBack, onTapOut, onLogDay }) {
     </div>
   );
 }
+// END OF FILE
