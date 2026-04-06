@@ -57,8 +57,18 @@ export default function TapOut() {
       case "redzone": return <RedZone onBack={() => navigate("home")} />;
       case "dhyana": return <DhyanaRoutine mode={dhyanaMode} onDone={() => navigate("home")} onBack={() => navigate("home")} />;
       case "summary": return <SummaryReport onBack={() => navigate("home")} />;
-      case "widget": return <WidgetPreview onBack={() => navigate("home")} />;
       case "journal": return <Journal onBack={() => navigate("home")} />;
+      
+      // NEW: Added the onTapOut and onLogDay routes here!
+      case "widget": 
+        return (
+          <WidgetPreview 
+            onBack={() => navigate("home")} 
+            onTapOut={() => navigate("sos")} 
+            onLogDay={() => navigate("snapshot")} 
+          />
+        );
+        
       default: return null;
     }
   };
