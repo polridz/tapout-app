@@ -19,7 +19,6 @@ export default function HomeDashboard({ userName, onTapOut, onRedZone, onDhyana,
 
   return (
     <div className="flex flex-col h-full px-5 pt-2 pb-4 gap-3 bg-[#E2DEF2]">
-
       <div className="flex items-center justify-between pt-1">
         <div>
           <p className="text-[11px] font-medium tracking-wide text-[#B7C4D8]">{greeting},</p>
@@ -93,4 +92,3 @@ export default function HomeDashboard({ userName, onTapOut, onRedZone, onDhyana,
     </div>
   );
 }
-// END OF FILE
