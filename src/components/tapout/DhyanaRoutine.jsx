@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Sun, Moon } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sun, Moon, Lock } from "lucide-react";
 
 export default function DhyanaRoutine({ mode: initialMode, onDone, onBack }) {
   const [currentMode, setCurrentMode] = useState(initialMode);
   const [step, setStep] = useState(0);
   const [breathPhase, setBreathPhase] = useState("inhale");
   
-  // States
   const [boundary, setBoundary] = useState(null);
   const [priorities, setPriorities] = useState("");
   const [boundaryHonoured, setBoundaryHonoured] = useState(null);
@@ -25,10 +24,9 @@ export default function DhyanaRoutine({ mode: initialMode, onDone, onBack }) {
     return () => clearTimeout(timeout);
   }, [breathPhase]);
 
-  // Toggle Handler
   const handleToggle = () => {
     setCurrentMode(prev => prev === "morning" ? "night" : "morning");
-    setStep(0); // Reset to first step when switching
+    setStep(0);
   };
 
   const content = isMorning ? [
@@ -45,7 +43,6 @@ export default function DhyanaRoutine({ mode: initialMode, onDone, onBack }) {
   const current = content[step];
   const isLast = step === content.length - 1;
 
-  // STYLING: Sunrise vs Dark Blue/Purple Starry Night
   const bgStyle = isMorning 
     ? "linear-gradient(180deg, #FFE0B2 0%, #FFD194 40%, #FF9B71 100%)" 
     : "linear-gradient(180deg, #090B1A 0%, #17153B 50%, #2E1B45 100%)"; 
@@ -58,7 +55,6 @@ export default function DhyanaRoutine({ mode: initialMode, onDone, onBack }) {
   return (
     <div className={`flex flex-col h-full animate-fade-in relative transition-colors duration-700`} style={{ background: bgStyle }}>
       
-      {/* Fake Stars */}
       {!isMorning && (
         <div className="absolute inset-0 pointer-events-none opacity-50">
           <div className="absolute top-[10%] left-[20%] w-1 h-1 bg-white rounded-full animate-pulse" />
@@ -68,7 +64,6 @@ export default function DhyanaRoutine({ mode: initialMode, onDone, onBack }) {
         </div>
       )}
 
-      {/* Header with Toggle */}
       <div className="flex items-center justify-between px-5 py-4 z-10 relative">
         <button onClick={onBack} className="p-2 rounded-full bg-black/10 backdrop-blur-sm">
           <ChevronLeft size={18} className={textColor} />
@@ -83,7 +78,6 @@ export default function DhyanaRoutine({ mode: initialMode, onDone, onBack }) {
 
       <div className="flex-1 flex flex-col px-6 pb-8 justify-center items-center text-center z-10 relative">
         
-        {/* Breathing Circle */}
         {current.type === "breathing" && (
           <div className="relative flex items-center justify-center h-48 mb-8">
             <div 
