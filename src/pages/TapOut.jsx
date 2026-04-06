@@ -63,7 +63,6 @@ export default function TapOut() {
     }
   };
 
-  // Ensure the bottom navigation shows up on the Journal page as well
   const showNav = ["home", "snapshot", "journal", "circle"].includes(screen);
 
   const navScreens = [
@@ -95,7 +94,6 @@ export default function TapOut() {
         </div>
       </MobileShell>
 
-      {/* FIXED NAVIGATION BUTTONS (Stays purple when active) */}
       <div className="flex gap-2 flex-wrap justify-center max-w-lg mt-6">
         {navScreens.map((s) => {
           const isActive = screen === s.id;
