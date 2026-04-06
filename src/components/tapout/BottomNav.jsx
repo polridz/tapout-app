@@ -4,7 +4,7 @@ const tabs = [
   { id: "home", label: "Home", Icon: Home },
   { id: "snapshot", label: "Log", Icon: BookOpen },
   { id: "journal", label: "Journal", Icon: PenLine },
-  { id: "circle", label: "Circle", Icon: Users },
+  { id: "circle", label: "Circle", Icon: Users }
 ];
 
 export default function BottomNav({ active, onNavigate }) {
