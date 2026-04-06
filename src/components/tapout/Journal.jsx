@@ -18,7 +18,6 @@ export default function Journal({ onBack }) {
 
   return (
     <div className="flex flex-col h-full bg-[#FDFBF7]">
-      {/* Header */}
       <div className="flex items-center gap-3 px-5 py-4 bg-white border-b border-[#B8B8FF]">
         <button onClick={onBack} className="p-2 rounded-full bg-[#E2DEF2]">
           <ChevronLeft size={16} color="#6D7BFF" />
@@ -31,8 +30,6 @@ export default function Journal({ onBack }) {
       </div>
 
       <div className="flex-1 overflow-y-auto px-5 py-6 flex flex-col gap-6">
-        
-        {/* Prompts Section */}
         <div>
           <p className="text-xs font-bold uppercase tracking-wide text-[#4A4868] mb-3 flex items-center gap-2">
             <Sparkles size={14} color="#F5A623"/> Reflection Prompts
@@ -50,7 +47,6 @@ export default function Journal({ onBack }) {
           </div>
         </div>
 
-        {/* Text Area */}
         <div className="flex-1 flex flex-col">
           <div className="flex items-center gap-2 mb-2">
             <PenLine size={14} color="#6D7BFF" />
@@ -65,7 +61,6 @@ export default function Journal({ onBack }) {
           />
         </div>
 
-        {/* Save Button */}
         <button
           onClick={handleSave}
           disabled={entry.length === 0}
